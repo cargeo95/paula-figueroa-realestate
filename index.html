@@ -247,6 +247,11 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
 .testi-item:hover .testi-play { background: rgba(255,255,255,0.15); border-color: var(--white); }
 .testi-item.is-playing .testi-play { display: none; }
 
+/* indicador scroll mobile */
+.testi-hint { display: none; text-align: center; margin-top: 18px; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+.testi-hint span { display: inline-block; width: 20px; height: 1px; background: rgba(255,255,255,0.25); vertical-align: middle; margin: 0 6px; }
+.testi-hint span.active { background: var(--gold); width: 28px; }
+
 /* =============================================
    CTA FINAL
 ============================================= */
@@ -349,9 +354,25 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
   .steps        { grid-template-columns: 1fr; gap: 40px; }
   .steps::before { display: none; }
 
-  /* testimonials */
-  .testi-layout { grid-template-columns: 1fr; gap: 3px; }
-  .testi-item { aspect-ratio: 4/3; }
+  .testi-hint { display: block; }
+  /* testimonials — scroll horizontal con snap */
+  .testi-layout {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding: 0 var(--pad) 24px;
+    scrollbar-width: none;
+  }
+  .testi-layout::-webkit-scrollbar { display: none; }
+  .testi-item {
+    flex: 0 0 82vw;
+    max-width: 340px;
+    aspect-ratio: 3/4;
+    scroll-snap-align: start;
+  }
 
   /* contacto */
   .cta-bg     { background-attachment: scroll; }
@@ -730,6 +751,9 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
     </div>
 
   </div>
+  <div class="testi-hint container">
+    <span class="active"></span><span></span><span></span>
+  </div>
 </section>
 
 <!-- ============ CONTACTO ============ -->
@@ -940,6 +964,17 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
   /* run immediately after DOM ready and again after load */
   checkViewport();
   window.addEventListener('load', checkViewport);
+
+  /* ── TESTIMONIOS: dots indicador scroll ── */
+  var testiScroll = document.querySelector('.testi-layout');
+  var testiDots   = document.querySelectorAll('.testi-hint span');
+  if (testiScroll && testiDots.length) {
+    testiScroll.addEventListener('scroll', function () {
+      var idx = Math.round(testiScroll.scrollLeft / testiScroll.offsetWidth * (testiDots.length));
+      idx = Math.min(idx, testiDots.length - 1);
+      testiDots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+    }, { passive: true });
+  }
 
   /* ── VIDEO TESTIMONIO: clic para play/pause ── */
   var testiWrap = document.getElementById('testiVideo');
