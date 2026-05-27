@@ -226,18 +226,26 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
 /* =============================================
    TESTIMONIALS
 ============================================= */
-.testimonials { padding: 110px 0; background: var(--bg); }
-.testi-grid { max-width: var(--max); margin: 70px auto 0; padding: 0 var(--pad); display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-.testi { background: var(--white); padding: 38px 32px; box-shadow: 0 2px 22px rgba(0,0,0,0.05); transition: var(--ease); }
-.testi:hover { box-shadow: 0 18px 52px rgba(0,0,0,0.1); transform: translateY(-4px); }
-.testi-quote { font-size: 3.8rem; color: var(--gold-light); font-family: var(--serif); line-height: 0.6; margin-bottom: 22px; display: block; }
-.stars { display: flex; gap: 4px; margin-bottom: 18px; }
-.stars svg { width: 13px; height: 13px; fill: var(--gold); }
-.testi-text { font-size: 0.93rem; color: var(--black-soft); line-height: 1.82; margin-bottom: 28px; font-style: italic; }
-.testi-auth { display: flex; align-items: center; gap: 14px; padding-top: 22px; border-top: 1px solid var(--gray-light); }
-.testi-avatar { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; background: var(--gray-light); flex-shrink: 0; }
-.testi-name { font-family: var(--serif); font-size: 0.95rem; font-weight: 600; color: var(--black); line-height: 1; margin-bottom: 3px; }
-.testi-role { font-size: 0.72rem; color: var(--gray); letter-spacing: 0.04em; }
+.testimonials { padding: 110px 0; background: var(--black); }
+.testimonials .section-head h2 { color: var(--white); }
+.testimonials .section-head p  { color: rgba(255,255,255,0.5); }
+
+.testi-layout { max-width: var(--max); margin: 56px auto 0; padding: 0 var(--pad); display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+
+.testi-item { position: relative; overflow: hidden; aspect-ratio: 3/4; background: #111; }
+.testi-item video,
+.testi-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transition: transform 0.7s ease; }
+.testi-item:hover img { transform: scale(1.05); }
+.testi-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 50%, transparent 100%); }
+.testi-item-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px 22px; z-index: 2; }
+.testi-item-name { font-family: var(--serif); font-size: 1.05rem; color: var(--white); font-weight: 500; display: block; margin-bottom: 4px; }
+.testi-item-role { font-size: 0.72rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* icono play sobre el video */
+.testi-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 56px; height: 56px; border: 1.5px solid rgba(255,255,255,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: var(--ease); z-index: 3; pointer-events: none; }
+.testi-play svg { width: 18px; height: 18px; fill: var(--white); margin-left: 3px; }
+.testi-item:hover .testi-play { background: rgba(255,255,255,0.15); border-color: var(--white); }
+.testi-item.is-playing .testi-play { display: none; }
 
 /* =============================================
    CTA FINAL
@@ -299,7 +307,7 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
   .props-grid { grid-template-columns: repeat(2, 1fr); }
   .zones      { grid-template-columns: repeat(2, 1fr); }
   .zone, .zone-body { min-height: 560px; }
-  .testi-grid { grid-template-columns: repeat(2, 1fr); }
+  .testi-layout { grid-template-columns: repeat(3, 1fr); }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
   .f-brand    { grid-column: 1 / -1; }
   .cta-inner  { gap: 44px; padding: 80px var(--pad); }
@@ -323,10 +331,10 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
   /* sections */
   .positioning, .properties, .lifestyle, .process, .testimonials { padding: 72px 0; }
 
-  /* paula photo — mantiene proporción retrato pero ancla al top para no cortar cara */
+  /* paula photo */
   .pos-inner      { grid-template-columns: 1fr; gap: 0; padding: 0 20px; }
   .pos-img-border { display: none; }
-  .pos-img        { aspect-ratio: 3/4; object-position: top center; }
+  .pos-img        { aspect-ratio: 3/4; object-position: top center; max-height: 480px; width: 100%; }
   .pos-badge      { left: 16px; bottom: 16px; }
   .pos-text       { padding-top: 36px; }
 
@@ -342,7 +350,8 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
   .steps::before { display: none; }
 
   /* testimonials */
-  .testi-grid { grid-template-columns: 1fr; max-width: 500px; margin: 56px auto 0; }
+  .testi-layout { grid-template-columns: 1fr; gap: 3px; }
+  .testi-item { aspect-ratio: 4/3; }
 
   /* contacto */
   .cta-bg     { background-attachment: scroll; }
@@ -372,8 +381,8 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
   .hero-btns    { flex-direction: column; align-items: stretch; }
   .btn          { width: 100%; text-align: center; white-space: normal; }
 
-  /* paula — en móvil pequeño recortamos menos alto */
-  .pos-img { aspect-ratio: 4/3; object-position: top center; }
+  /* paula — mantiene retrato, cara visible */
+  .pos-img { aspect-ratio: 3/4; max-height: 400px; object-position: top center; }
 
   /* properties */
   .prop-feats { grid-template-columns: 1fr; }
@@ -680,57 +689,43 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
 <section class="testimonials" id="testimonios">
   <div class="container">
     <div class="section-head reveal">
-      <span class="section-label">Voces de clientes</span>
+      <span class="section-label">Clientes reales</span>
       <h2>Experiencias</h2>
+      <p>Personas que confiaron en el proceso y encontraron su lugar en Georgia.</p>
     </div>
   </div>
-  <div class="testi-grid">
 
-    <div class="testi reveal">
-      <span class="testi-quote">"</span>
-      <div class="stars">
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+  <div class="testi-layout">
+
+    <div class="testi-item reveal" id="testiVideo">
+      <video playsinline preload="metadata" poster="">
+        <source src="assets/video/testimonio/Cierre 1.mp4" type="video/mp4">
+      </video>
+      <div class="testi-item-overlay"></div>
+      <div class="testi-play">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       </div>
-      <p class="testi-text">Llevaba meses buscando sin saber por dónde empezar. Paula no solo me ayudó a encontrar la propiedad correcta en Lawrenceville, sino que me guió en cada paso del proceso con una claridad y paciencia increíbles. Hoy vivo en el lugar que imaginé.</p>
-      <div class="testi-auth">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Andrés Morales" class="testi-avatar" loading="lazy">
-        <div><div class="testi-name">Andrés Morales</div><div class="testi-role">Comprador en Lawrenceville, GA</div></div>
+      <div class="testi-item-label">
+        <span class="testi-item-name">Cierre exitoso</span>
+        <span class="testi-item-role">Georgia · 2025</span>
       </div>
     </div>
 
-    <div class="testi reveal" style="transition-delay:0.14s">
-      <span class="testi-quote">"</span>
-      <div class="stars">
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-      </div>
-      <p class="testi-text">Invertir en una propiedad en Georgia siendo extranjera era algo que me generaba mucha incertidumbre. Paula convirtió ese proceso en algo completamente manejable. Su conocimiento del mercado local y su honestidad son invaluables. Ya estamos viendo el retorno.</p>
-      <div class="testi-auth">
-        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&q=80" alt="Valentina Ríos" class="testi-avatar" loading="lazy">
-        <div><div class="testi-name">Valentina Ríos</div><div class="testi-role">Inversionista, Loganville, GA</div></div>
+    <div class="testi-item reveal" style="transition-delay:0.14s">
+      <img src="assets/img/testimonio/IMG_0494.jpg" alt="Momento del cierre" loading="lazy">
+      <div class="testi-item-overlay"></div>
+      <div class="testi-item-label">
+        <span class="testi-item-name">Momento del cierre</span>
+        <span class="testi-item-role">Georgia · 2025</span>
       </div>
     </div>
 
-    <div class="testi reveal" style="transition-delay:0.28s">
-      <span class="testi-quote">"</span>
-      <div class="stars">
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
-      </div>
-      <p class="testi-text">Mi familia y yo queríamos un lugar donde crecer, con buenas escuelas y naturaleza cerca. Paula entendió exactamente lo que buscábamos y nos presentó opciones que nunca hubiéramos encontrado solos. La casa en Dacula superó todas nuestras expectativas.</p>
-      <div class="testi-auth">
-        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="Carlos y Laura Méndez" class="testi-avatar" loading="lazy">
-        <div><div class="testi-name">Carlos &amp; Laura Méndez</div><div class="testi-role">Familia compradora, Dacula, GA</div></div>
+    <div class="testi-item reveal" style="transition-delay:0.28s">
+      <img src="assets/img/testimonio/IMG_0533.jpg" alt="Nuevos propietarios" loading="lazy">
+      <div class="testi-item-overlay"></div>
+      <div class="testi-item-label">
+        <span class="testi-item-name">Nuevos propietarios</span>
+        <span class="testi-item-role">Georgia · 2025</span>
       </div>
     </div>
 
@@ -945,6 +940,24 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
   /* run immediately after DOM ready and again after load */
   checkViewport();
   window.addEventListener('load', checkViewport);
+
+  /* ── VIDEO TESTIMONIO: clic para play/pause ── */
+  var testiWrap = document.getElementById('testiVideo');
+  if (testiWrap) {
+    var testiVid = testiWrap.querySelector('video');
+    testiWrap.addEventListener('click', function () {
+      if (testiVid.paused) {
+        testiVid.play();
+        testiWrap.classList.add('is-playing');
+      } else {
+        testiVid.pause();
+        testiWrap.classList.remove('is-playing');
+      }
+    });
+    testiVid.addEventListener('ended', function () {
+      testiWrap.classList.remove('is-playing');
+    });
+  }
 
 })();
 </script>

@@ -10,6 +10,10 @@ desktop.ini
 *.pdf
 *.docx
 
+# Imágenes originales sin convertir
+*.HEIC
+*.heic
+
 # Editor
 .vscode/
 .idea/
