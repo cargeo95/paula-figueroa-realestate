@@ -1,0 +1,937 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Paula Figueroa - Residencias exclusivas en Georgia para quienes buscan elevar su estilo de vida. Propiedades seleccionadas en Lawrenceville, Loganville y Atlanta.">
+<meta name="keywords" content="propiedades Georgia, real estate Georgia, casas Georgia, inversión inmobiliaria, Lawrenceville, Loganville, Atlanta, Dacula, Norcross">
+<meta name="author" content="Paula Figueroa Real Estate">
+<meta property="og:title" content="Paula Figueroa | Residencias Exclusivas en Georgia">
+<meta property="og:description" content="Accede a propiedades seleccionadas en las mejores zonas de Georgia con el acompañamiento de una experta en el mercado.">
+<meta property="og:type" content="website">
+<title>Paula Figueroa | Residencias Exclusivas en Georgia</title>
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<link rel="apple-touch-icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* =============================================
+   RESET & VARIABLES
+============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f0f1ee;
+  --white: #ffffff;
+  --black: #1c201c;
+  --black-soft: #2c312c;
+  --gray: #666d65;
+  --gray-light: #e0e3de;
+  --gold: #c9a96e;
+  --gold-light: #e8d5b0;
+  --sage: #848c80;
+  --sage-light: #a8b0a4;
+  --sage-dark: #3e4a3e;
+  --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --max: 1280px;
+  --pad: 28px;
+  --ease: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --nav-h: 78px;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--sans); background: var(--bg); color: var(--black); line-height: 1.6; overflow-x: hidden; }
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* =============================================
+   TYPOGRAPHY
+============================================= */
+h1, h2, h3, h4 { font-family: var(--serif); line-height: 1.2; font-weight: 500; }
+h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); }
+h2 { font-size: clamp(1.9rem, 3.5vw, 3rem); }
+h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
+h4 { font-size: clamp(1.05rem, 1.5vw, 1.25rem); }
+p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height: 1.85; }
+
+/* =============================================
+   UTILITIES
+============================================= */
+/* unified padding across all wrappers */
+.container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+.section-label { font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 14px; }
+.gold-line { width: 48px; height: 1px; background: var(--gold); margin: 22px 0; }
+
+/* =============================================
+   BUTTONS
+============================================= */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 15px 34px; font-family: var(--sans); font-size: 0.8rem; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;
+  transition: var(--ease); border: none; text-decoration: none;
+  /* no white-space:nowrap — allows wrapping on small screens */
+}
+.btn-primary { background: var(--sage-dark); color: var(--white); }
+.btn-primary:hover { background: var(--sage); transform: translateY(-2px); box-shadow: 0 10px 36px rgba(62,74,62,0.35); }
+.btn-outline { background: transparent; color: var(--black); border: 1px solid var(--black); }
+.btn-outline:hover { background: var(--black); color: var(--white); transform: translateY(-2px); }
+.btn-white { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.55); }
+.btn-white:hover { background: var(--white); color: var(--black); transform: translateY(-2px); }
+
+/* =============================================
+   SCROLL REVEAL
+============================================= */
+.reveal   { opacity: 0; transform: translateY(40px);  transition: opacity 0.85s ease, transform 0.85s ease; }
+.reveal.in{ opacity: 1; transform: translateY(0); }
+.reveal-l { opacity: 0; transform: translateX(-44px); transition: opacity 0.85s ease, transform 0.85s ease; }
+.reveal-l.in{ opacity: 1; transform: translateX(0); }
+.reveal-r { opacity: 0; transform: translateX(44px);  transition: opacity 0.85s ease, transform 0.85s ease; }
+.reveal-r.in{ opacity: 1; transform: translateX(0); }
+
+/* =============================================
+   NAVBAR
+============================================= */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 22px 0; transition: var(--ease); }
+.nav.scrolled { background: rgba(240,241,238,0.97); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); padding: 14px 0; box-shadow: 0 1px 0 rgba(62,74,62,0.1); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+.nav-logo { display: flex; flex-direction: column; gap: 2px; }
+.nav-logo-name { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; color: var(--white); transition: color 0.4s ease; letter-spacing: 0.01em; }
+.nav.scrolled .nav-logo-name { color: var(--black); }
+.nav-logo-sub { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+.nav-links { display: flex; align-items: center; gap: 38px; }
+.nav-links a { font-size: 0.77rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.82); transition: color 0.3s; }
+.nav.scrolled .nav-links a { color: var(--black); }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { padding: 10px 22px; font-size: 0.73rem; }
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+.burger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: var(--ease); }
+.nav.scrolled .burger span { background: var(--black); }
+
+/* Mobile menu — z-index ABOVE navbar (1000) so it properly overlays everything */
+.mob-menu { display: flex; position: fixed; inset: 0; z-index: 1002; background: #141414; flex-direction: column; align-items: center; justify-content: center; gap: 36px; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+.mob-menu.open { opacity: 1; pointer-events: all; }
+.mob-menu a { font-family: var(--serif); font-size: 1.9rem; color: var(--white); transition: color 0.3s; }
+.mob-menu a:hover { color: var(--gold); }
+.mob-close { position: absolute; top: 28px; right: var(--pad); background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; line-height: 1; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+
+/* =============================================
+   HERO
+============================================= */
+.hero { position: relative; height: 100vh; height: 100dvh; display: flex; align-items: center; overflow: hidden; }
+/* scale(1.08) → pan-in via CSS; parallax via backgroundPositionY in JS (no transform conflict) */
+.hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=85') center/cover no-repeat; will-change: background-position; transform: scale(1.08); transition: transform 9s ease; }
+.hero-bg.pan { transform: scale(1); }
+.hero-ov { position: absolute; inset: 0; background: linear-gradient(110deg, rgba(28,38,28,0.82) 0%, rgba(20,30,20,0.52) 55%, rgba(14,22,14,0.18) 100%); }
+.hero-content { position: relative; z-index: 10; max-width: var(--max); margin: 0 auto; padding: calc(var(--nav-h) + 150px) var(--pad) 60px; width: 100%; }
+.hero-eye { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 14px; }
+.hero-eye::before { content: ''; display: inline-block; width: 30px; height: 1px; background: var(--gold); }
+.hero-message { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-weight: 500; color: rgba(255,255,255,0.85); font-style: italic; max-width: 560px; line-height: 1.65; margin-bottom: 24px; letter-spacing: 0.01em; }
+.hero-title { color: var(--white); max-width: 680px; margin-bottom: 12px; font-weight: 500; font-size: clamp(2rem, 3.8vw, 3.6rem); }
+.hero-subtitle { font-size: clamp(0.97rem, 1.5vw, 1.05rem); color: rgba(255,255,255,0.58); max-width: 460px; margin-bottom: 32px; line-height: 1.78; font-family: var(--sans); }
+.hero-btns { display: flex; gap: 18px; flex-wrap: wrap; }
+.hero-scroll { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.45); font-size: 0.67rem; letter-spacing: 0.18em; text-transform: uppercase; animation: bounce 2.2s infinite; }
+@keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(9px); } }
+.hero-scroll-line { width: 1px; height: 38px; background: linear-gradient(to bottom, rgba(255,255,255,0.28), transparent); }
+
+/* =============================================
+   POSITIONING
+============================================= */
+.positioning { padding: 110px 0; background: var(--white); }
+.pos-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.pos-img-wrap { position: relative; }
+.pos-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+.pos-img-border { position: absolute; bottom: -22px; right: -22px; width: 170px; height: 170px; border: 1px solid var(--gold-light); z-index: -1; }
+.pos-badge { position: absolute; bottom: 44px; left: -28px; background: var(--black); color: var(--white); padding: 20px 26px; }
+.pos-badge-num { font-family: var(--serif); font-size: 1.9rem; font-weight: 600; color: var(--gold); line-height: 1; }
+.pos-badge-txt { font-size: 0.72rem; color: rgba(255,255,255,0.62); margin-top: 4px; letter-spacing: 0.05em; }
+.pos-text h2 { margin-bottom: 14px; }
+.pos-text p  { margin-bottom: 18px; font-size: 1.04rem; }
+.pos-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 38px; padding-top: 38px; border-top: 1px solid var(--gray-light); }
+.stat-n { font-family: var(--serif); font-size: 2.1rem; font-weight: 600; color: var(--black); line-height: 1; }
+.stat-l { font-size: 0.78rem; color: var(--gray); margin-top: 4px; letter-spacing: 0.04em; }
+.pos-cta { margin-top: 38px; }
+
+/* =============================================
+   PROPERTIES
+============================================= */
+.properties { padding: 110px 0; background: var(--bg); }
+.section-head { text-align: center; max-width: 600px; margin: 0 auto 70px; }
+.section-head h2 { margin-bottom: 14px; }
+.section-head p  { font-size: 1.04rem; }
+.props-grid { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.prop-card { background: var(--white); overflow: hidden; transition: var(--ease); box-shadow: 0 2px 22px rgba(0,0,0,0.055); }
+.prop-card:hover { transform: translateY(-9px); box-shadow: 0 22px 64px rgba(0,0,0,0.13); }
+.prop-img-wrap { position: relative; overflow: hidden; aspect-ratio: 4/3; }
+.prop-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+.prop-card:hover .prop-img { transform: scale(1.06); }
+.prop-tag { position: absolute; top: 18px; left: 18px; background: var(--black); color: var(--white); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 6px 13px; font-weight: 600; }
+.prop-price { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.88), transparent); padding: 40px 22px 18px; color: var(--white); font-family: var(--serif); font-size: 1.55rem; font-weight: 600; }
+.prop-body { padding: 26px; }
+.prop-loc { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
+.prop-title { font-family: var(--serif); font-size: 1.15rem; color: var(--black); margin-bottom: 18px; line-height: 1.3; }
+.prop-feats { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 24px; }
+.feat { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; color: var(--gray); }
+.feat svg { width: 15px; height: 15px; color: var(--gold); flex-shrink: 0; }
+.prop-div { height: 1px; background: var(--gray-light); margin-bottom: 22px; }
+.prop-btn { width: 100%; }
+
+/* =============================================
+   LIFESTYLE
+============================================= */
+.lifestyle { padding: 110px 0 0; background: var(--sage-dark); color: var(--white); }
+.lifestyle .section-head h2 { color: var(--white); }
+.lifestyle .section-head p  { color: rgba(255,255,255,0.5); }
+
+.zones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 60px; }
+
+.zone { position: relative; min-height: 640px; overflow: hidden; }
+.zone-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94); }
+.zone:hover .zone-bg { transform: scale(1.07); }
+.zone-grad { position: absolute; inset: 0; }
+.zone-1 .zone-grad { background: linear-gradient(to top, rgba(38,48,38,0.95) 0%, rgba(50,62,48,0.62) 45%, rgba(38,48,36,0.22) 100%); }
+.zone-2 .zone-grad { background: linear-gradient(to top, rgba(30,40,34,0.95) 0%, rgba(42,54,46,0.62) 45%, rgba(28,40,32,0.22) 100%); }
+.zone-3 .zone-grad { background: linear-gradient(to top, rgba(44,50,44,0.95) 0%, rgba(58,66,56,0.62) 45%, rgba(42,50,40,0.22) 100%); }
+
+.zone-body { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: flex-end; min-height: 640px; padding: 44px 34px; }
+
+.zone-num { font-size: 0.83rem; font-weight: 600; letter-spacing: 0.26em; color: var(--gold); display: block; margin-bottom: 10px; }
+.zone-name { font-family: var(--serif); font-size: clamp(2.2rem, 2.86vw, 3.08rem); color: var(--white); font-weight: 500; line-height: 1.1; margin-bottom: 8px; }
+.zone-tag  { font-size: 1.01rem; color: rgba(255,255,255,0.72); font-style: italic; line-height: 1.55; display: block; margin-bottom: 0; }
+.zone-div  { width: 36px; height: 1px; background: var(--gold); opacity: 0.55; margin: 20px 0; }
+
+.zone-feats { display: flex; flex-direction: column; gap: 11px; }
+.zf { display: flex; gap: 12px; align-items: flex-start; }
+.zf-dot  { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+.zf-name { font-size: 1.02rem; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 2px; }
+.zf-desc { font-size: 0.9rem; color: rgba(255,255,255,0.52); line-height: 1.5; }
+
+/* =============================================
+   PROCESS
+============================================= */
+.process { padding: 110px 0; background: var(--white); }
+.process-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 70px; position: relative; }
+.steps::before { content: ''; position: absolute; top: 31px; left: calc(16.6% + 16px); right: calc(16.6% + 16px); height: 1px; background: var(--gray-light); }
+.step { text-align: center; padding: 0 28px; }
+.step-num { width: 62px; height: 62px; border: 1px solid var(--gray-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-family: var(--serif); font-size: 1.15rem; color: var(--gold); background: var(--white); position: relative; z-index: 2; transition: var(--ease); }
+.step:hover .step-num { border-color: var(--gold); background: var(--black); color: var(--gold); }
+.step h3 { font-size: 1.25rem; margin-bottom: 11px; }
+.step p  { font-size: 0.88rem; }
+
+/* =============================================
+   TESTIMONIALS
+============================================= */
+.testimonials { padding: 110px 0; background: var(--bg); }
+.testi-grid { max-width: var(--max); margin: 70px auto 0; padding: 0 var(--pad); display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.testi { background: var(--white); padding: 38px 32px; box-shadow: 0 2px 22px rgba(0,0,0,0.05); transition: var(--ease); }
+.testi:hover { box-shadow: 0 18px 52px rgba(0,0,0,0.1); transform: translateY(-4px); }
+.testi-quote { font-size: 3.8rem; color: var(--gold-light); font-family: var(--serif); line-height: 0.6; margin-bottom: 22px; display: block; }
+.stars { display: flex; gap: 4px; margin-bottom: 18px; }
+.stars svg { width: 13px; height: 13px; fill: var(--gold); }
+.testi-text { font-size: 0.93rem; color: var(--black-soft); line-height: 1.82; margin-bottom: 28px; font-style: italic; }
+.testi-auth { display: flex; align-items: center; gap: 14px; padding-top: 22px; border-top: 1px solid var(--gray-light); }
+.testi-avatar { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; background: var(--gray-light); flex-shrink: 0; }
+.testi-name { font-family: var(--serif); font-size: 0.95rem; font-weight: 600; color: var(--black); line-height: 1; margin-bottom: 3px; }
+.testi-role { font-size: 0.72rem; color: var(--gray); letter-spacing: 0.04em; }
+
+/* =============================================
+   CTA FINAL
+============================================= */
+.cta-final { position: relative; display: flex; align-items: center; overflow: hidden; }
+.cta-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=85') center/cover no-repeat; background-attachment: fixed; }
+.cta-ov { position: absolute; inset: 0; background: rgba(10,10,10,0.84); }
+
+.cta-inner { position: relative; z-index: 10; max-width: var(--max); margin: 0 auto; padding: 100px var(--pad); width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+.cta-text .section-label { margin-bottom: 18px; }
+.cta-text h2 { color: var(--white); font-size: clamp(1.75rem, 3vw, 2.75rem); margin-bottom: 18px; }
+.cta-text p  { color: rgba(255,255,255,0.62); font-size: 1.05rem; line-height: 1.8; margin-bottom: 0; }
+
+.cta-form { background: rgba(255,255,255,0.06); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.11); padding: 48px 44px; }
+.cta-form-title { font-family: var(--serif); font-size: 1.15rem; color: var(--white); font-weight: 500; margin-bottom: 6px; }
+.cta-form-sub { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-bottom: 34px; }
+
+.form-field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 24px; }
+.form-field label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.form-field input { background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.2); color: var(--white); padding: 10px 0; font-family: var(--sans); font-size: 0.95rem; outline: none; transition: border-color 0.3s; width: 100%; }
+.form-field input::placeholder { color: rgba(255,255,255,0.28); }
+.form-field input:focus { border-bottom-color: var(--gold); }
+.form-submit { width: 100%; margin-top: 10px; padding: 16px; font-size: 0.82rem; letter-spacing: 0.16em; cursor: pointer; background: var(--sage-dark); color: var(--white); border: 1px solid rgba(255,255,255,0.2); font-family: var(--sans); font-weight: 600; text-transform: uppercase; transition: var(--ease); }
+.form-submit:hover { background: var(--sage); transform: translateY(-2px); }
+
+/* =============================================
+   FOOTER
+============================================= */
+.footer { background: #141414; color: var(--white); padding: 70px var(--pad) 38px; }
+.footer-inner { max-width: var(--max); margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; padding-bottom: 46px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 36px; }
+.f-brand h3 { font-family: var(--serif); font-size: 1.55rem; color: var(--white); margin-bottom: 3px; }
+.f-brand-sub { font-size: 0.67rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: block; }
+.f-brand p { font-size: 0.87rem; color: rgba(255,255,255,0.42); line-height: 1.72; max-width: 270px; }
+.f-social { display: flex; gap: 14px; margin-top: 26px; }
+.soc { width: 38px; height: 38px; border: 1px solid rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center; transition: var(--ease); color: rgba(255,255,255,0.46); }
+.soc:hover { border-color: var(--gold); color: var(--gold); }
+.f-col h4 { font-family: var(--sans); font-size: 0.67rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.36); margin-bottom: 18px; }
+.f-col ul { display: flex; flex-direction: column; gap: 11px; }
+.f-col a  { font-size: 0.85rem; color: rgba(255,255,255,0.62); transition: color 0.3s; }
+.f-col a:hover { color: var(--gold); }
+.footer-bot { display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.28); }
+.footer-bot-logo { font-family: var(--serif); font-size: 0.95rem; color: rgba(255,255,255,0.38); }
+
+/* =============================================
+   RESPONSIVE — 1200px
+============================================= */
+@media (max-width: 1200px) {
+  .footer-top { gap: 40px; }
+}
+
+/* =============================================
+   RESPONSIVE — tablet 1024px
+============================================= */
+@media (max-width: 1024px) {
+  .pos-inner    { gap: 48px; }
+  .props-grid   { grid-template-columns: repeat(2, 1fr); }
+  .zones        { grid-template-columns: repeat(2, 1fr); }
+  .zone         { min-height: 560px; }
+  .zone-body    { min-height: 560px; }
+  .testi-grid   { grid-template-columns: repeat(2, 1fr); }
+  .footer-top   { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .f-brand      { grid-column: 1 / -1; }
+}
+
+/* =============================================
+   RESPONSIVE — mobile 768px
+============================================= */
+@media (max-width: 768px) {
+  /* navbar */
+  .nav-links, .nav-cta { display: none; }
+  .burger { display: flex; }
+
+  /* hero */
+  .hero-content { padding: 110px 20px 72px; }
+  /* remove forced line-breaks — let text reflow naturally */
+  .hero-title br, .hero-subtitle br, .hero-message br { display: none; }
+  /* hide scroll indicator on touch — swipe is natural */
+  .hero-scroll { display: none; }
+
+  /* section vertical spacing */
+  .positioning, .properties, .lifestyle, .process, .testimonials { padding: 72px 0; }
+  .cta-bg { background-attachment: scroll; }
+  .cta-inner { grid-template-columns: 1fr; gap: 48px; padding: 80px var(--pad); }
+  .cta-form { padding: 36px 28px; }
+
+  /* positioning — single column */
+  .pos-inner { grid-template-columns: 1fr; gap: 0; padding: 0 20px; }
+  .pos-img-border { display: none; }
+  /* portrait image too tall on mobile → landscape ratio */
+  .pos-img { aspect-ratio: 16/9; }
+  /* badge inset on image instead of floating left */
+  .pos-badge { left: 20px; bottom: 20px; }
+
+  /* text block top spacing */
+  .pos-text { padding-top: 36px; }
+
+  /* properties */
+  .props-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+
+  /* lifestyle */
+  .zones { grid-template-columns: 1fr; }
+  .zone, .zone-body { min-height: 500px; }
+
+  /* process */
+  .steps { grid-template-columns: 1fr; gap: 44px; }
+  .steps::before { display: none; }
+
+  /* testimonials */
+  .testi-grid { grid-template-columns: 1fr; max-width: 480px; margin: 64px auto 0; }
+
+  /* footer */
+  .footer-top  { grid-template-columns: 1fr; gap: 32px; }
+  .f-brand     { grid-column: auto; }
+  .footer-bot  { flex-direction: column; gap: 10px; text-align: center; }
+}
+
+/* =============================================
+   RESPONSIVE — small mobile 480px
+============================================= */
+@media (max-width: 480px) {
+  :root { --pad: 16px; }
+
+  .positioning, .properties, .lifestyle, .process, .testimonials { padding: 60px 0; }
+
+  h1 { font-size: 1.95rem; }
+  h2 { font-size: 1.6rem; }
+
+  .hero-content { padding: 96px 16px 60px; }
+  /* stack buttons and allow text to wrap */
+  .hero-btns, .cta-btns { flex-direction: column; align-items: stretch; }
+  .btn { width: 100%; text-align: center; white-space: normal; }
+
+  /* 1-column feature grid to avoid tight 2-col squeeze */
+  .prop-feats { grid-template-columns: 1fr; }
+
+  .step { padding: 0 8px; }
+  .footer { padding: 56px var(--pad) 32px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#inicio" class="nav-logo">
+      <span class="nav-logo-name">Paula Figueroa</span>
+      <span class="nav-logo-sub">Real Estate · Georgia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#propiedades">Propiedades</a></li>
+      <li><a href="#lifestyle">Georgia</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#testimonios">Experiencias</a></li>
+    </ul>
+    <a href="#contacto" class="btn btn-white nav-cta">Hablar con Paula</a>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="mob-menu" id="mobMenu" role="dialog" aria-label="Menú de navegación">
+  <button class="mob-close" id="mobClose" aria-label="Cerrar menú">&#x2715;</button>
+  <a href="#propiedades" class="mob-lnk">Propiedades</a>
+  <a href="#lifestyle"   class="mob-lnk">Georgia</a>
+  <a href="#proceso"     class="mob-lnk">Proceso</a>
+  <a href="#testimonios" class="mob-lnk">Experiencias</a>
+  <a href="#contacto"    class="mob-lnk">Hablar con Paula</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-content">
+    <div class="hero-eye">Paula Figueroa · Real Estate Georgia</div>
+    <p class="hero-message reveal">
+      "Sabemos lo que buscas: tranquilidad y algo que sea tuyo de verdad,
+      con una inversión bien pensada.
+      En Georgia hay opciones que pueden ser ese comienzo."
+    </p>
+    <h1 class="hero-title reveal" style="transition-delay:0.14s">
+      Residencias exclusivas en Georgia para quienes buscan elevar su estilo de vida
+    </h1>
+    <p class="hero-subtitle reveal" style="transition-delay:0.26s">
+      Accede a propiedades seleccionadas en las mejores zonas,
+      con el acompañamiento de una experta en el mercado.
+    </p>
+    <div class="hero-btns reveal" style="transition-delay:0.36s">
+      <a href="#propiedades" class="btn btn-primary">Ver propiedades disponibles</a>
+      <a href="#contacto"    class="btn btn-white">Hablar con Paula</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Explorar</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ============ POSITIONING ============ -->
+<section class="positioning" id="sobre">
+  <div class="pos-inner">
+    <div class="pos-img-wrap reveal-l">
+      <img src="assets/img/paula.jpg"
+           alt="Paula Figueroa - Especialista en Real Estate Georgia"
+           class="pos-img" loading="lazy">
+      <div class="pos-img-border"></div>
+      <div class="pos-badge">
+        <div class="pos-badge-num">+10</div>
+        <div class="pos-badge-txt">Años en el mercado</div>
+      </div>
+    </div>
+    <div class="reveal-r pos-text">
+      <span class="section-label">Sobre Paula Figueroa</span>
+      <h2>Bienvenido a Casa</h2>
+      <div class="gold-line"></div>
+      <p>Cada propiedad representa una inversión, un estilo de vida y una decisión importante.</p>
+      <p>Paula Figueroa acompaña a sus clientes en la búsqueda de propiedades que no solo cumplan expectativas... sino que las superen.</p>
+      <p>Con años de experiencia en el mercado inmobiliario de Georgia, Paula combina conocimiento profundo del entorno local con un acompañamiento cercano que hace que cada proceso de compra sea único y sin estrés.</p>
+      <div class="pos-stats">
+        <div><div class="stat-n">150+</div><div class="stat-l">Propiedades vendidas</div></div>
+        <div><div class="stat-n">98%</div><div class="stat-l">Clientes satisfechos</div></div>
+        <div><div class="stat-n">10+</div><div class="stat-l">Años de experiencia</div></div>
+        <div><div class="stat-n">5</div><div class="stat-l">Zonas premium en Georgia</div></div>
+      </div>
+      <div class="pos-cta"><a href="#contacto" class="btn btn-primary">Hablar con Paula</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROPERTIES ============ -->
+<section class="properties" id="propiedades">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">Portafolio Exclusivo</span>
+      <h2>Propiedades seleccionadas</h2>
+      <p>Cada residencia ha sido elegida por su valor, ubicación y potencial de inversión en las zonas más destacadas de Georgia.</p>
+    </div>
+  </div>
+  <div class="props-grid">
+
+    <!-- Card 1: Loganville -->
+    <article class="prop-card reveal">
+      <div class="prop-img-wrap">
+        <a href="https://www.zillow.com/homedetails/4001-Morning-Dove-Ct-Loganville-GA-30052/49896274_zpid/" target="_blank" rel="noopener">
+          <img src="assets/img/propiedades/loganville.png"
+               alt="4001 Morning Dove Ct, Loganville GA" class="prop-img" loading="lazy">
+        </a>
+        <span class="prop-tag">Disponible</span>
+        <div class="prop-price">$345,000</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-loc">
+          <svg width="11" height="14" viewBox="0 0 12 16" fill="currentColor"><path d="M6 0C3.24 0 1 2.24 1 5c0 3.75 5 11 5 11s5-7.25 5-11c0-2.76-2.24-5-5-5zm0 7.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
+          Loganville, GA 30052
+        </div>
+        <h3 class="prop-title">4001 Morning Dove Ct<br>Loganville, Georgia</h3>
+        <div class="prop-feats">
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>4 habitaciones</div>
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5v9.75m0 0h18M3 20.25V10.5M3 10.5L12 3l9 7.5"/></svg>3 baños</div>
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15m11.25-11.25v4.5m0-4.5h-4.5m4.5 0L15 9m0 6l5.25 5.25m0 0v-4.5m0 4.5h-4.5"/></svg>2,450 sq ft</div>
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25M20.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.9 17.9 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25"/></svg>Garaje 2 autos</div>
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197"/></svg>Comunidad cerrada</div>
+        </div>
+        <div class="prop-div"></div>
+        <a href="#contacto" class="btn btn-primary prop-btn">Solicitar información</a>
+      </div>
+    </article>
+
+    <!-- Card 2: Lawrenceville -->
+    <article class="prop-card reveal" style="transition-delay:0.14s">
+      <div class="prop-img-wrap">
+        <a href="https://www.zillow.com/homedetails/1204-Empire-Cir-Lawrenceville-GA-30044/14805618_zpid/" target="_blank" rel="noopener">
+          <img src="assets/img/propiedades/lawrenceville.png"
+               alt="1204 Empire Cir, Lawrenceville GA" class="prop-img" loading="lazy">
+        </a>
+        <span class="prop-tag">Disponible</span>
+        <div class="prop-price">$389,000</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-loc">
+          <svg width="11" height="14" viewBox="0 0 12 16" fill="currentColor"><path d="M6 0C3.24 0 1 2.24 1 5c0 3.75 5 11 5 11s5-7.25 5-11c0-2.76-2.24-5-5-5zm0 7.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
+          Lawrenceville, GA 30044
+        </div>
+        <h3 class="prop-title">1204 Empire Cir<br>Lawrenceville, Georgia</h3>
+        <div class="prop-feats">
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>5 habitaciones</div>
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5v9.75m0 0h18M3 20.25V10.5M3 10.5L12 3l9 7.5"/></svg>3.5 baños</div>
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15m11.25-11.25v4.5m0-4.5h-4.5m4.5 0L15 9m0 6l5.25 5.25m0 0v-4.5m0 4.5h-4.5"/></svg>3,120 sq ft</div>
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25M20.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.9 17.9 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25"/></svg>Garaje 2 autos</div>
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>Patio amplio</div>
+        </div>
+        <div class="prop-div"></div>
+        <a href="#contacto" class="btn btn-primary prop-btn">Solicitar información</a>
+      </div>
+    </article>
+
+    <!-- Card 3: Atlanta / Old Gordon -->
+    <article class="prop-card reveal" style="transition-delay:0.28s">
+      <div class="prop-img-wrap">
+        <a href="https://www.zillow.com/homedetails/3860-Old-Gordon-Rd-NW-Atlanta-GA-30336/65449225_zpid/" target="_blank" rel="noopener">
+          <img src="assets/img/propiedades/oldgordon.png"
+               alt="3860 Old Gordon Rd NW, Atlanta GA" class="prop-img" loading="lazy">
+        </a>
+        <span class="prop-tag">Disponible</span>
+        <div class="prop-price">$279,000</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-loc">
+          <svg width="11" height="14" viewBox="0 0 12 16" fill="currentColor"><path d="M6 0C3.24 0 1 2.24 1 5c0 3.75 5 11 5 11s5-7.25 5-11c0-2.76-2.24-5-5-5zm0 7.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
+          Atlanta, GA 30336
+        </div>
+        <h3 class="prop-title">3860 Old Gordon Rd NW<br>Atlanta, Georgia</h3>
+        <div class="prop-feats">
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>3 habitaciones</div>
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5v9.75m0 0h18M3 20.25V10.5M3 10.5L12 3l9 7.5"/></svg>2 baños</div>
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15m11.25-11.25v4.5m0-4.5h-4.5m4.5 0L15 9m0 6l5.25 5.25m0 0v-4.5m0 4.5h-4.5"/></svg>1,850 sq ft</div>
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>Lote amplio</div>
+          <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>Cerca de Atlanta</div>
+        </div>
+        <div class="prop-div"></div>
+        <a href="#contacto" class="btn btn-primary prop-btn">Solicitar información</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ LIFESTYLE ============ -->
+<section class="lifestyle" id="lifestyle">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">Descubre Georgia</span>
+      <h2>Así se vive en Georgia</h2>
+      <p>Espacios, comunidad y experiencias que elevan tu calidad de vida.</p>
+    </div>
+  </div>
+  <div class="zones">
+
+    <div class="zone zone-1 reveal">
+      <div class="zone-bg" style="background-image: url('assets/img/zonas/lawrenceville.jpg');"></div>
+      <div class="zone-grad"></div>
+      <div class="zone-body">
+        <span class="zone-num">01</span>
+        <h3 class="zone-name">Lawrenceville</h3>
+        <span class="zone-tag">El equilibrio perfecto entre familia, cultura y lifestyle</span>
+        <div class="zone-div"></div>
+        <div class="zone-feats">
+          <div class="zf"><div class="zf-dot"></div><div><div class="zf-name">Rhodes Jordan Park</div><div class="zf-desc">Espacios amplios, lago, senderos y zonas familiares</div></div></div>
+          <div class="zf"><div class="zf-dot"></div><div><div class="zf-name">Tribble Mill Park</div><div class="zf-desc">Más de 700 acres, lagos, kayak y picnic</div></div></div>
+          <div class="zf"><div class="zf-dot"></div><div><div class="zf-name">Aurora Theatre</div><div class="zf-desc">Teatro profesional y experiencias culturales constantes</div></div></div>
+          <div class="zf"><div class="zf-dot"></div><div><div class="zf-name">Lawrenceville Lawn</div><div class="zf-desc">Eventos, conciertos y espacios abiertos en familia</div></div></div>
+          <div class="zf"><div class="zf-dot"></div><div><div class="zf-name">Sugarloaf Mills</div><div class="zf-desc">Shopping, restaurantes y entretenimiento en un solo lugar</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone zone-2 reveal" style="transition-delay:0.14s">
+      <div class="zone-bg" style="background-image: url('assets/img/zonas/dacula.png');"></div>
+      <div class="zone-grad"></div>
+      <div class="zone-body">
+        <span class="zone-num">02</span>
+        <h3 class="zone-name">Dacula</h3>
+        <span class="zone-tag">La zona perfecta para quienes buscan tranquilidad sin alejarse de todo</span>
+        <div class="zone-div"></div>
+        <div class="zone-feats">
+          <div class="zf"><div class="zf-dot"></div><div><div class="zf-name">Little Mulberry Park</div><div class="zf-desc">Senderos, vistas abiertas y espacios para desconectar</div></div></div>
+          <div class="zf"><div class="zf-dot"></div><div><div class="zf-name">Harbins Park</div><div class="zf-desc">Caminatas, biking y contacto directo con la naturaleza</div></div></div>
+          <div class="zf"><div class="zf-dot"></div><div><div class="zf-name">Hamilton Mill Golf Club</div><div class="zf-desc">Campo de golf diseñado profesionalmente, perfil exclusivo</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone zone-3 reveal" style="transition-delay:0.28s">
+      <div class="zone-bg" style="background-image: url('assets/img/zonas/norcross.jpg');"></div>
+      <div class="zone-grad"></div>
+      <div class="zone-body">
+        <span class="zone-num">03</span>
+        <h3 class="zone-name">Norcross</h3>
+        <span class="zone-tag">Una mezcla entre tradición, comunidad y lifestyle urbano</span>
+        <div class="zone-div"></div>
+        <div class="zone-feats">
+          <div class="zf"><div class="zf-dot"></div><div><div class="zf-name">Downtown Norcross</div><div class="zf-desc">Calles con historia, restaurantes y ambiente acogedor</div></div></div>
+          <div class="zf"><div class="zf-dot"></div><div><div class="zf-name">Pinckneyville Park</div><div class="zf-desc">Parques amplios, deporte y vida activa</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="process" id="proceso">
+  <div class="process-inner">
+    <div class="reveal" style="text-align:left">
+      <span class="section-label">Simple y claro</span>
+      <h2>Cómo empezar</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3>Explora propiedades</h3>
+        <p>Revisa las opciones seleccionadas y encuentra las que se alinean con tu visión y presupuesto.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:0.2s">
+        <div class="step-num">02</div>
+        <h3>Agenda una asesoría</h3>
+        <p>Una conversación personalizada con Paula para entender tus necesidades y orientarte en el proceso.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:0.4s">
+        <div class="step-num">03</div>
+        <h3>Encuentra la opción ideal</h3>
+        <p>Con el acompañamiento experto, toma la decisión con seguridad y da el paso hacia tu nuevo hogar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials" id="testimonios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">Voces de clientes</span>
+      <h2>Experiencias</h2>
+    </div>
+  </div>
+  <div class="testi-grid">
+
+    <div class="testi reveal">
+      <span class="testi-quote">"</span>
+      <div class="stars">
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+      </div>
+      <p class="testi-text">Llevaba meses buscando sin saber por dónde empezar. Paula no solo me ayudó a encontrar la propiedad correcta en Lawrenceville, sino que me guió en cada paso del proceso con una claridad y paciencia increíbles. Hoy vivo en el lugar que imaginé.</p>
+      <div class="testi-auth">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Andrés Morales" class="testi-avatar" loading="lazy">
+        <div><div class="testi-name">Andrés Morales</div><div class="testi-role">Comprador en Lawrenceville, GA</div></div>
+      </div>
+    </div>
+
+    <div class="testi reveal" style="transition-delay:0.14s">
+      <span class="testi-quote">"</span>
+      <div class="stars">
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+      </div>
+      <p class="testi-text">Invertir en una propiedad en Georgia siendo extranjera era algo que me generaba mucha incertidumbre. Paula convirtió ese proceso en algo completamente manejable. Su conocimiento del mercado local y su honestidad son invaluables. Ya estamos viendo el retorno.</p>
+      <div class="testi-auth">
+        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&q=80" alt="Valentina Ríos" class="testi-avatar" loading="lazy">
+        <div><div class="testi-name">Valentina Ríos</div><div class="testi-role">Inversionista, Loganville, GA</div></div>
+      </div>
+    </div>
+
+    <div class="testi reveal" style="transition-delay:0.28s">
+      <span class="testi-quote">"</span>
+      <div class="stars">
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+        <svg viewBox="0 0 16 16"><path d="M8 .5l1.95 3.95 4.36.63-3.15 3.07.74 4.33L8 10.25l-3.9 2.23.74-4.33L1.69 5.08l4.36-.63z"/></svg>
+      </div>
+      <p class="testi-text">Mi familia y yo queríamos un lugar donde crecer, con buenas escuelas y naturaleza cerca. Paula entendió exactamente lo que buscábamos y nos presentó opciones que nunca hubiéramos encontrado solos. La casa en Dacula superó todas nuestras expectativas.</p>
+      <div class="testi-auth">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="Carlos y Laura Méndez" class="testi-avatar" loading="lazy">
+        <div><div class="testi-name">Carlos &amp; Laura Méndez</div><div class="testi-role">Familia compradora, Dacula, GA</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="cta-final" id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-ov"></div>
+  <div class="cta-inner">
+
+    <div class="cta-text reveal">
+      <span class="section-label">El siguiente paso es tuyo</span>
+      <h2>Dar el paso a tener algo propio en Georgia empieza por ver buenas opciones.</h2>
+      <p>Hablemos. Puede que ya haya una opción en Georgia para ti.</p>
+    </div>
+
+    <div class="cta-form reveal" style="transition-delay:0.18s">
+      <p class="cta-form-title">Déjanos tus datos</p>
+      <p class="cta-form-sub">Te contactamos a la brevedad.</p>
+      <form onsubmit="return false;">
+        <div class="form-field">
+          <label for="cf-nombre">Nombre</label>
+          <input type="text" id="cf-nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name">
+        </div>
+        <div class="form-field">
+          <label for="cf-tel">Teléfono</label>
+          <input type="tel" id="cf-tel" name="telefono" placeholder="+1 000 000 0000" autocomplete="tel">
+        </div>
+        <div class="form-field">
+          <label for="cf-email">Correo</label>
+          <input type="email" id="cf-email" name="correo" placeholder="tucorreo@email.com" autocomplete="email">
+        </div>
+        <button type="submit" class="form-submit">Quiero que me contacten</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="f-brand">
+        <h3>Paula Figueroa</h3>
+        <span class="f-brand-sub">Real Estate · Georgia</span>
+        <p>Especialista en propiedades exclusivas en las mejores zonas de Georgia. Acompañamiento experto desde la búsqueda hasta el cierre.</p>
+        <div class="f-social">
+          <a href="#" class="soc" aria-label="Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="soc" aria-label="Facebook">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="soc" aria-label="LinkedIn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="soc" aria-label="WhatsApp">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Navegar</h4>
+        <ul>
+          <li><a href="#sobre">Sobre Paula</a></li>
+          <li><a href="#propiedades">Propiedades</a></li>
+          <li><a href="#lifestyle">Georgia</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#testimonios">Experiencias</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="#contacto">Hablar con Paula</a></li>
+          <li><a href="#propiedades">Ver propiedades</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <div class="footer-bot-logo">Paula Figueroa</div>
+      <div>Georgia, United States &middot; Real Estate</div>
+      <div>&copy; 2026 Paula Figueroa Real Estate. Todos los derechos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── NAVBAR scroll ── */
+  var nav = document.getElementById('nav');
+
+  function setNavHeight() {
+    document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+  }
+  setNavHeight();
+  window.addEventListener('resize', setNavHeight, { passive: true });
+
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 55);
+    setNavHeight();
+  }, { passive: true });
+
+  /* ── HERO: ken-burns pan-in + parallax via backgroundPositionY (no transform conflict) ── */
+  var heroBg = document.getElementById('heroBg');
+  var isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+
+  /* trigger CSS scale(1.08)→scale(1) transition after first paint */
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      heroBg.classList.add('pan');
+    });
+  });
+
+  /* parallax only on non-touch devices to avoid mobile jank */
+  if (!isTouchDevice) {
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          var s = window.scrollY;
+          if (s < window.innerHeight) {
+            heroBg.style.backgroundPositionY = 'calc(50% + ' + (s * 0.28) + 'px)';
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  /* ── MOBILE MENU ── */
+  var burger   = document.getElementById('burger');
+  var mob      = document.getElementById('mobMenu');
+  var mobClose = document.getElementById('mobClose');
+  var mobLinks = mob.querySelectorAll('.mob-lnk');
+
+  function openMob() {
+    mob.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Cerrar menú');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMob() {
+    mob.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Abrir menú');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', openMob);
+  mobClose.addEventListener('click', closeMob);
+  mobLinks.forEach(function (l) { l.addEventListener('click', closeMob); });
+
+  /* close on Escape key */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mob.classList.contains('open')) closeMob();
+  });
+
+  /* ── SMOOTH SCROLL ── */
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var h = this.getAttribute('href');
+      if (h === '#') return;
+      var target = document.querySelector(h);
+      if (target) {
+        e.preventDefault();
+        var offset = nav.offsetHeight + 8;
+        window.scrollTo({
+          top: target.getBoundingClientRect().top + window.scrollY - offset,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  /* ── SCROLL REVEAL ── */
+  var revEls = document.querySelectorAll('.reveal, .reveal-l, .reveal-r');
+
+  /* fire immediately for elements already in viewport */
+  function checkViewport() {
+    revEls.forEach(function (el) {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.92) {
+        el.classList.add('in');
+      }
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          obs.unobserve(entry.target); /* fire once, then stop watching */
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    revEls.forEach(function (el) { obs.observe(el); });
+  } else {
+    /* fallback for old browsers */
+    revEls.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* run immediately after DOM ready and again after load */
+  checkViewport();
+  window.addEventListener('load', checkViewport);
+
+})();
+</script>
+</body>
+</html>
+
