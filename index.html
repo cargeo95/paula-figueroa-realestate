@@ -144,7 +144,7 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
 .positioning { padding: 110px 0; background: var(--white); }
 .pos-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .pos-img-wrap { position: relative; }
-.pos-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+.pos-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top center; }
 .pos-img-border { position: absolute; bottom: -22px; right: -22px; width: 170px; height: 170px; border: 1px solid var(--gold-light); z-index: -1; }
 .pos-badge { position: absolute; bottom: 44px; left: -28px; background: var(--black); color: var(--white); padding: 20px 26px; }
 .pos-badge-num { font-family: var(--serif); font-size: 1.9rem; font-weight: 600; color: var(--gold); line-height: 1; }
@@ -288,20 +288,21 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
 ============================================= */
 @media (max-width: 1200px) {
   .footer-top { gap: 40px; }
+  .cta-inner  { gap: 56px; }
 }
 
 /* =============================================
    RESPONSIVE — tablet 1024px
 ============================================= */
 @media (max-width: 1024px) {
-  .pos-inner    { gap: 48px; }
-  .props-grid   { grid-template-columns: repeat(2, 1fr); }
-  .zones        { grid-template-columns: repeat(2, 1fr); }
-  .zone         { min-height: 560px; }
-  .zone-body    { min-height: 560px; }
-  .testi-grid   { grid-template-columns: repeat(2, 1fr); }
-  .footer-top   { grid-template-columns: 1fr 1fr; gap: 40px; }
-  .f-brand      { grid-column: 1 / -1; }
+  .pos-inner  { gap: 40px; }
+  .props-grid { grid-template-columns: repeat(2, 1fr); }
+  .zones      { grid-template-columns: repeat(2, 1fr); }
+  .zone, .zone-body { min-height: 560px; }
+  .testi-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .f-brand    { grid-column: 1 / -1; }
+  .cta-inner  { gap: 44px; padding: 80px var(--pad); }
 }
 
 /* =============================================
@@ -313,47 +314,45 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
   .burger { display: flex; }
 
   /* hero */
-  .hero-content { padding: 110px 20px 72px; }
-  /* remove forced line-breaks — let text reflow naturally */
+  .hero-content { padding: calc(var(--nav-h) + 80px) 20px 60px; }
   .hero-title br, .hero-subtitle br, .hero-message br { display: none; }
-  /* hide scroll indicator on touch — swipe is natural */
   .hero-scroll { display: none; }
+  .hero-btns { flex-direction: column; align-items: stretch; }
+  .hero-btns .btn { width: 100%; text-align: center; }
 
-  /* section vertical spacing */
+  /* sections */
   .positioning, .properties, .lifestyle, .process, .testimonials { padding: 72px 0; }
-  .cta-bg { background-attachment: scroll; }
-  .cta-inner { grid-template-columns: 1fr; gap: 48px; padding: 80px var(--pad); }
-  .cta-form { padding: 36px 28px; }
 
-  /* positioning — single column */
-  .pos-inner { grid-template-columns: 1fr; gap: 0; padding: 0 20px; }
+  /* paula photo — mantiene proporción retrato pero ancla al top para no cortar cara */
+  .pos-inner      { grid-template-columns: 1fr; gap: 0; padding: 0 20px; }
   .pos-img-border { display: none; }
-  /* portrait image too tall on mobile → landscape ratio */
-  .pos-img { aspect-ratio: 16/9; }
-  /* badge inset on image instead of floating left */
-  .pos-badge { left: 20px; bottom: 20px; }
-
-  /* text block top spacing */
-  .pos-text { padding-top: 36px; }
+  .pos-img        { aspect-ratio: 3/4; object-position: top center; }
+  .pos-badge      { left: 16px; bottom: 16px; }
+  .pos-text       { padding-top: 36px; }
 
   /* properties */
-  .props-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .props-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
 
   /* lifestyle */
   .zones { grid-template-columns: 1fr; }
-  .zone, .zone-body { min-height: 500px; }
+  .zone, .zone-body { min-height: 480px; }
 
   /* process */
-  .steps { grid-template-columns: 1fr; gap: 44px; }
+  .steps        { grid-template-columns: 1fr; gap: 40px; }
   .steps::before { display: none; }
 
   /* testimonials */
-  .testi-grid { grid-template-columns: 1fr; max-width: 480px; margin: 64px auto 0; }
+  .testi-grid { grid-template-columns: 1fr; max-width: 500px; margin: 56px auto 0; }
+
+  /* contacto */
+  .cta-bg     { background-attachment: scroll; }
+  .cta-inner  { grid-template-columns: 1fr; gap: 40px; padding: 72px var(--pad); }
+  .cta-form   { padding: 32px 24px; }
 
   /* footer */
-  .footer-top  { grid-template-columns: 1fr; gap: 32px; }
-  .f-brand     { grid-column: auto; }
-  .footer-bot  { flex-direction: column; gap: 10px; text-align: center; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .f-brand    { grid-column: auto; }
+  .footer-bot { flex-direction: column; gap: 10px; text-align: center; }
 }
 
 /* =============================================
@@ -362,21 +361,38 @@ p  { font-size: clamp(0.93rem, 1.5vw, 1.04rem); color: var(--gray); line-height:
 @media (max-width: 480px) {
   :root { --pad: 16px; }
 
-  .positioning, .properties, .lifestyle, .process, .testimonials { padding: 60px 0; }
+  .positioning, .properties, .lifestyle, .process, .testimonials { padding: 56px 0; }
 
-  h1 { font-size: 1.95rem; }
-  h2 { font-size: 1.6rem; }
+  h1 { font-size: 1.85rem; }
+  h2 { font-size: 1.5rem; }
 
-  .hero-content { padding: 96px 16px 60px; }
-  /* stack buttons and allow text to wrap */
-  .hero-btns, .cta-btns { flex-direction: column; align-items: stretch; }
-  .btn { width: 100%; text-align: center; white-space: normal; }
+  /* hero */
+  .hero-content { padding: calc(var(--nav-h) + 60px) 16px 48px; }
+  .hero-message { font-size: 1.1rem; }
+  .hero-btns    { flex-direction: column; align-items: stretch; }
+  .btn          { width: 100%; text-align: center; white-space: normal; }
 
-  /* 1-column feature grid to avoid tight 2-col squeeze */
+  /* paula — en móvil pequeño recortamos menos alto */
+  .pos-img { aspect-ratio: 4/3; object-position: top center; }
+
+  /* properties */
   .prop-feats { grid-template-columns: 1fr; }
 
-  .step { padding: 0 8px; }
-  .footer { padding: 56px var(--pad) 32px; }
+  /* zones */
+  .zone, .zone-body { min-height: 420px; }
+  .zone-body        { padding: 32px 24px; }
+
+  /* process */
+  .step { padding: 0 4px; }
+
+  /* contacto */
+  .cta-inner  { padding: 60px var(--pad); }
+  .cta-form   { padding: 28px 20px; }
+  .cta-btns   { flex-direction: column; align-items: stretch; }
+
+  /* footer */
+  .footer     { padding: 52px var(--pad) 28px; }
+  .f-brand p  { max-width: 100%; }
 }
 
 </style>
